@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colagea — Résumé de Performance Août 2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.6; color: #1a1a1a; background: #f5f4f0; }
+.page { max-width: 960px; margin: 0 auto; padding: 40px 32px; }
+@media(max-width:600px){ .page { padding: 16px 12px; } }
+:root { --blue: #0085F7; --blue-light: #E6F2FF; --green: #138D5A; --green-light: #E6F5EE; --amber: #F8B83A; --amber-light: #FEF6E6; --red: #c0392b; --red-light: #fdf0ee; --dark: #0F1923; }
+.cover { background: var(--dark); color: #fff; border-radius: 12px; padding: 48px; margin-bottom: 24px; position: relative; overflow: hidden; }
+.cover::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--blue) 0%, var(--green) 50%, var(--amber) 100%); }
+@media(max-width:600px){ .cover { padding: 28px 20px; } }
+.cover-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+.cover-logo-circles { width: 36px; height: 36px; position: relative; flex-shrink: 0; }
+.c1 { position: absolute; width: 36px; height: 36px; border-radius: 50%; border: 5px solid var(--blue); border-bottom-color: transparent; transform: rotate(-30deg); }
+.c2 { position: absolute; width: 24px; height: 24px; top: 6px; left: 6px; border-radius: 50%; border: 4px solid var(--green); border-top-color: transparent; transform: rotate(30deg); }
+.c3 { position: absolute; width: 12px; height: 12px; top: 12px; left: 12px; border-radius: 50%; background: var(--amber); }
+.cover-logo-name { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); }
+.cover-badge { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); font-size: 11px; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; letter-spacing: 0.5px; }
+.cover h1 { font-size: 30px; font-weight: 700; margin-bottom: 4px; }
+@media(max-width:600px){ .cover h1 { font-size: 22px; } }
+.cover-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 28px; }
+.cover-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border-radius: 8px; overflow: hidden; }
+@media(max-width:600px){ .cover-meta { grid-template-columns: 1fr 1fr; } }
+.cover-meta-item { padding: 14px 16px; background: rgba(255,255,255,0.05); }
+.cover-meta-item .label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.cover-meta-item .value { font-size: 12px; color: rgba(255,255,255,0.8); font-weight: 500; }
+.section { background: #fff; border-radius: 12px; padding: 28px 32px; margin-bottom: 20px; border: 0.5px solid #e5e3dd; }
+@media(max-width:600px){ .section { padding: 18px 16px; } }
+.section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid #f0ede8; }
+.section-number { width: 30px; height: 30px; border-radius: 50%; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.section-title { font-size: 16px; font-weight: 700; color: var(--dark); }
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 16px; }
+@media(max-width:600px){ .metrics-grid { grid-template-columns: 1fr 1fr; } }
+.metric-card { background: #f8f7f4; border-radius: 8px; padding: 14px; border-top: 3px solid var(--blue); }
+.metric-card.green { border-top-color: var(--green); } .metric-card.amber { border-top-color: var(--amber); } .metric-card.red { border-top-color: var(--red); }
+.metric-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: #999; margin-bottom: 5px; font-weight: 600; }
+.metric-value { font-size: 20px; font-weight: 700; color: var(--dark); line-height: 1; margin-bottom: 4px; }
+.metric-change { font-size: 11px; font-weight: 500; }
+.up { color: var(--green); } .down { color: var(--red); } .neutral { color: #999; }
+.highlight { border-radius: 0 8px 8px 0; padding: 12px 14px; margin: 16px 0; font-size: 13px; line-height: 1.6; border-left: 3px solid var(--blue); background: var(--blue-light); color: #0a3d80; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 16px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 9px 12px; background: #f8f7f4; color: #666; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; border-bottom: 2px solid #ede9e3; }
+td { padding: 9px 12px; border-bottom: 0.5px solid #f0ede8; color: #1a1a1a; vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+.td-right { text-align: right; }
+.badge { display: inline-block; padding: 3px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+.badge-green { background: var(--green-light); color: var(--green); }
+.badge-red { background: var(--red-light); color: var(--red); }
+.badge-amber { background: var(--amber-light); color: #9a6800; }
+.color-bar { height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--blue) 0%, var(--green) 50%, var(--amber) 100%); margin-bottom: 28px; }
+.thank-you-page { background: var(--dark); color: #fff; border-radius: 12px; padding: 80px 48px; margin: 40px 0; text-align: center; position: relative; }
+.thank-you-page::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--blue) 0%, var(--green) 50%, var(--amber) 100%); border-radius: 0 0 12px 12px; }
+@media(max-width:600px){ .thank-you-page { padding: 48px 24px; } }
+.good-sign { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 0.5px solid #f0ede8; font-size: 13px; }
+.good-sign:last-child { border-bottom: none; }
+.good-sign-icon { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+h2 { font-size: 14px; font-weight: 700; margin: 20px 0 12px 0; color: var(--dark); }
+p { margin: 12px 0; font-size: 13px; line-height: 1.8; color: #333; }
+</style>
+
+</head>
+<body>
+<div class="page">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-logo">
+    <div class="cover-logo-circles">
+      <div class="c1"></div>
+      <div class="c2"></div>
+      <div class="c3"></div>
+    </div>
+    <div class="cover-logo-name">Katchingg Media</div>
+  </div>
+
+  <div class="cover-badge">Août 2026 — Résumé de Performance</div>
+  <h1>Colagea — Google Ads</h1>
+  <div class="cover-sub">1–31 août 2026 vs. 1–31 juillet 2026 · Multi-Geo · EUR</div>
+
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="label">Compte</div>
+      <div class="value">Colagea EUR</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Période</div>
+      <div class="value">1–31 août 2026</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Préparé par</div>
+      <div class="value">Diana</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Vérifié par</div>
+      <div class="value">Charles Perot</div>
+    </div>
+  </div>
+</div>
+
+<div class="color-bar"></div>
+
+<!-- SECTION 1: ACCOUNT OVERVIEW -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">1</div>
+    <div class="section-title">Vue d'ensemble du compte — Août vs Juillet</div>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-card green">
+      <div class="metric-label">Valeur conv.</div>
+      <div class="metric-value">€57,9K</div>
+      <div class="metric-change"><span class="up">▲ +€10,5K vs Juillet</span></div>
+    </div>
+    <div class="metric-card green">
+      <div class="metric-label">Conversions</div>
+      <div class="metric-value">731</div>
+      <div class="metric-change"><span class="up">▲ +120 vs Juillet</span></div>
+    </div>
+    <div class="metric-card red">
+      <div class="metric-label">ROAS</div>
+      <div class="metric-value">2.47x</div>
+      <div class="metric-change"><span class="down">▼ -0.79x vs Juillet</span></div>
+    </div>
+    <div class="metric-card red">
+      <div class="metric-label">Coût</div>
+      <div class="metric-value">€23,5K</div>
+      <div class="metric-change"><span class="down">▲ +€8,9K vs Juillet</span></div>
+    </div>
+    <div class="metric-card amber">
+      <div class="metric-label">CPC moyen</div>
+      <div class="metric-value">€0,38</div>
+      <div class="metric-change"><span class="down">▲ +€0,05 vs Juillet</span></div>
+    </div>
+    <div class="metric-card green">
+      <div class="metric-label">Clics</div>
+      <div class="metric-value">61K</div>
+      <div class="metric-change"><span class="up">▲ +17,3K vs Juillet</span></div>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>Août = ROAS en baisse malgré une hausse des conversions et de la valeur de conversion.</strong> Les conversions ont atteint 731, soit +120 vs juillet, tandis que la valeur de conversion s’élève à €57,9K, soit +€10,5K vs juillet. La baisse du ROAS a donc été principalement liée à une hausse de la dépense plus rapide que celle de la valeur générée, ainsi qu’à un changement du mix media vers des segments moins efficients. Une part plus importante de l’investissement a été allouée au segment femme, qui a sous-performé par rapport aux rendements attendus, ainsi qu’au Demand Gen, qui offre structurellement un ROAS inférieur. Le compte a donc généré davantage de conversions et de valeur, mais avec une efficacité moindre, entraînant un ROAS global inférieur (3.26x → 2.47x). Cette allocation stratégique prépare le compte au scaling du Q4.
+  </div>
+
+  <h2>Août - Moyennes Journalières par Période</h2>
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Période Août</th>
+        <th class="td-right">Dépense journalière</th>
+        <th class="td-right">Valeur conv. journalière</th>
+        <th class="td-right">ROAS</th>
+      </tr>
+      <tr>
+        <td>Aug 1-7 (Early)</td>
+        <td class="td-right">€688,62</td>
+        <td class="td-right">€1,984,81</td>
+        <td class="td-right">2.88x</td>
+      </tr>
+      <tr>
+        <td>Aug 8-14 (Mid-Early)</td>
+        <td class="td-right">€674,77</td>
+        <td class="td-right">€1,706,44</td>
+        <td class="td-right">2.53x</td>
+      </tr>
+      <tr>
+        <td>Aug 15-21 (Mid-Late) 🔴</td>
+        <td class="td-right">€812,49</td>
+        <td class="td-right">€1,572,63</td>
+        <td class="td-right">1.94x</td>
+      </tr>
+      <tr>
+        <td>Aug 22-31 (Late) ✅</td>
+        <td class="td-right">€829,05</td>
+        <td class="td-right">€2,114,70</td>
+        <td class="td-right">2.55x</td>
+      </tr>
+    </table>
+  </div>
+
+  <p>Août montre une volatilité dans les performances Google Ads : un creux mi-mois (Aug 15-21 à 1.94x ROAS) suivi d'une amélioration fin-mois (Aug 22-31 à 2.55x ROAS). Cette évolution coïncide avec plusieurs optimisations appliquées pendant la période, mais la fenêtre d'attribution et d'autres facteurs peuvent également influencer les résultats. Les données de fin août constituent donc un signal encourageant à confirmer avec davantage de recul.</p>
+</div>
+
+<!-- SECTION 2: POSITIVE POINTS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">2</div>
+    <div class="section-title">Points positifs — Août 2026</div>
+  </div>
+
+  <div class="good-sign">
+    <span class="good-sign-icon">✅</span>
+    <span><strong>EU - Brand - Search maintient 10.59x ROAS</strong> — Campagne flagship performer. Flagship performer — aucun ajustement requis. Lost IS Budget = 0%.</span>
+  </div>
+
+  <div class="good-sign">
+    <span class="good-sign-icon">✅</span>
+    <span><strong>FR/BE - Brand - Shopping reste rentable 5.34x</strong> — Desktop retourne 13.38x ROAS mais budget-starved à 4.53%. Appliquer -30% à -50% bid adjustment tablet → libérer budget desktop scaling.</span>
+  </div>
+
+  <div class="good-sign">
+    <span class="good-sign-icon">✅</span>
+    <span><strong>EU - DGen - TOF - Homme scaling réussi 1.39x ROAS stable</strong> — Spend tripled, ROAS stable ~1.39x, CPA improved €61.15 → €57.26. YouTube 3.00x et Gmail 5.14x affichent des signaux d'efficacité encourageants, mais sur des volumes de dépense encore faibles.</span>
+  </div>
+
+  <div class="good-sign">
+    <span class="good-sign-icon">✅</span>
+    <span><strong>Canada Brand Search breakout 13.45x ROAS</strong> — Capture efficient Canadian brand awareness. Compensation excellente pour PMax non-brand learning curve.</span>
+  </div>
+
+  <div class="good-sign">
+    <span class="good-sign-icon">✅</span>
+    <span><strong>Switzerland market 10.75x ROAS = pure profit</strong> — Tous SKUs profitables (5x-28x ROAS). Sept 4 budget boost €10 → €20/day justifié. Market de haute-intention, haute-AOV.</span>
+  </div>
+
+  <div class="good-sign">
+    <span class="good-sign-icon">✅</span>
+    <span><strong>Rebond observé fin août</strong> — Entre 22–31 août, la valeur de conversion quotidienne progresse d'environ 56% (€1.5K → €2.1K) et le ROAS remonte de 1.94x à 2.55x. Signal positif à confirmer sur une période plus longue.</span>
+  </div>
+</div>
+
+<!-- SECTION 3: CAMPAIGN SUMMARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">3</div>
+    <div class="section-title">Résumé des performances par campagne — Août 2026</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Campagne</th>
+        <th class="td-right">Dépense</th>
+        <th class="td-right">Valeur conv.</th>
+        <th class="td-right">ROAS</th>
+        <th class="td-right">Conv.</th>
+        <th class="td-right">Coût/conv.</th>
+        <th>Statut</th>
+      </tr>
+      <tr>
+        <td><strong>EU - Brand - Search</strong></td>
+        <td class="td-right">€2,435</td>
+        <td class="td-right">€25,783</td>
+        <td class="td-right"><strong>10.59x</strong></td>
+        <td class="td-right">320</td>
+        <td class="td-right">€7.60</td>
+        <td><span class="badge badge-green">Principale ✅</span></td>
+      </tr>
+      <tr>
+        <td><strong>FR/BE - Brand - Shopping</strong></td>
+        <td class="td-right">€1,584</td>
+        <td class="td-right">€8,463</td>
+        <td class="td-right"><strong>5.34x</strong></td>
+        <td class="td-right">111</td>
+        <td class="td-right">€14.27</td>
+        <td><span class="badge badge-green">Efficacité ✅</span></td>
+      </tr>
+      <tr>
+        <td>EU - NB - Shopping - Femmes</td>
+        <td class="td-right">€3,219</td>
+        <td class="td-right">€1,706</td>
+        <td class="td-right"><strong>0.53x</strong></td>
+        <td class="td-right">23</td>
+        <td class="td-right">€140.00</td>
+        <td><span class="badge badge-amber">⏳ Stabilizing</span></td>
+      </tr>
+      <tr>
+        <td>EU - NB - PMax - Homme</td>
+        <td class="td-right">€3,041</td>
+        <td class="td-right">€5,007</td>
+        <td class="td-right"><strong>1.65x</strong></td>
+        <td class="td-right">65</td>
+        <td class="td-right">€47.06</td>
+        <td><span class="badge badge-amber">Optimization ⏳</span></td>
+      </tr>
+      <tr>
+        <td>EU - DGen - TOF - Homme</td>
+        <td class="td-right">€3,044</td>
+        <td class="td-right">€4,225</td>
+        <td class="td-right"><strong>1.39x</strong></td>
+        <td class="td-right">53</td>
+        <td class="td-right">€57.26</td>
+        <td><span class="badge badge-green">Scaling ✅</span></td>
+      </tr>
+      <tr>
+        <td>EU - NB - PMax - Femme</td>
+        <td class="td-right">€2,128</td>
+        <td class="td-right">€4,065</td>
+        <td class="td-right"><strong>1.91x</strong></td>
+        <td class="td-right">53</td>
+        <td class="td-right">€39.97</td>
+        <td><span class="badge badge-green">✅ Solid</span></td>
+      </tr>
+      <tr>
+        <td>EU - NB - Shopping - Hommes</td>
+        <td class="td-right">€1,555</td>
+        <td class="td-right">€1,539</td>
+        <td class="td-right"><strong>0.99x</strong></td>
+        <td class="td-right">22</td>
+        <td class="td-right">€70.68</td>
+        <td><span class="badge badge-amber">Allocation ⚠️</span></td>
+      </tr>
+      <tr>
+        <td>FR - NB - Search - Competitors</td>
+        <td class="td-right">€1,272</td>
+        <td class="td-right">€270</td>
+        <td class="td-right"><strong>0.21x</strong></td>
+        <td class="td-right">3</td>
+        <td class="td-right">€423.91</td>
+        <td><span class="badge badge-red">⏸️ PAUSED</span></td>
+      </tr>
+      <tr>
+        <td><strong>CA - Brand - Search</strong></td>
+        <td class="td-right">€181</td>
+        <td class="td-right">€2,431</td>
+        <td class="td-right"><strong>13.45x</strong></td>
+        <td class="td-right">27</td>
+        <td class="td-right">€6.74</td>
+        <td><span class="badge badge-green">Breakout 🍁</span></td>
+      </tr>
+      <tr>
+        <td><strong>CH - Brand - Shopping</strong></td>
+        <td class="td-right">€115</td>
+        <td class="td-right">€1,232</td>
+        <td class="td-right"><strong>10.75x</strong></td>
+        <td class="td-right">13</td>
+        <td class="td-right">€8.96</td>
+        <td><span class="badge badge-green">Pure Profit 🇨🇭</span></td>
+      </tr>
+      <tr>
+        <td>EU - DGen - BOF - Homme</td>
+        <td class="td-right">—</td>
+        <td class="td-right">—</td>
+        <td class="td-right">—</td>
+        <td class="td-right">—</td>
+        <td class="td-right">—</td>
+        <td><span class="badge badge-red">⏸️ PAUSED</span></td>
+      </tr>
+      <tr>
+        <td>EU - DGen - BOF - Femme</td>
+        <td class="td-right">—</td>
+        <td class="td-right">—</td>
+        <td class="td-right">—</td>
+        <td class="td-right">—</td>
+        <td class="td-right">—</td>
+        <td><span class="badge badge-red">⏸️ PAUSED</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <p><em>Lignes rouge/orange = campagnes en difficulté ou optimization phase. Lignes vertes = performers stables. Canada/Suisse = données août complet. Demand Gen BOF paused (préparation assets en cours — awaiting GMC feed sync + carousel asset creation).</em></p>
+</div>
+
+<!-- SECTION 4: DETAILED CAMPAIGN ANALYSIS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">4</div>
+    <div class="section-title">Analyse détaillée par campagne (SYNTHÈSE)</div>
+  </div>
+
+  <h2>EU - Brand - Search — Performance stable multi-géographique</h2>
+  <p>Maintient 10.59x ROAS malgré scaling. Top keywords : [colagea] exact 16.45x ROAS (218 conversions), "colagea" phrase 7.34x ROAS (42.55 conversions), [colgea] misspelling 24.68x ROAS (5 conversions). Lost IS Budget = 0% confirmant aucune contrainte budgétaire. Flagship performer — aucun ajustement requis.</p>
+
+  <h2>FR/BE - Brand - Shopping — Rentabilité stable mais device misallocation</h2>
+  <p>ROAS 5.34x excellent mais device breakdown problématique : Desktop 13.38x ROAS sur 4.53% budget (gold inexploité), Tablet 2.91x underperformer à 5.38%, Mobile 5.08x à 90%. Action immédiate : -30% à -50% bid adjustment tablet → +20% à +40% desktop scaling.</p>
+
+  <h2>EU - NB - Shopping - Femmes — Stabilization in Progress (SKU Analysis)</h2>
+  <p>Cible tROAS 80% appliquée le 4 septembre. Les premiers résultats du 4–7 septembre montrent une amélioration du ROAS, mais la période reste trop courte pour confirmer définitivement l'impact de l'ajustement. Mobile concentre 92% de la dépense ; poursuivre le monitoring pendant la phase de stabilisation.</p>
+  
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>SKU</th>
+        <th class="td-right">Coût (€)</th>
+        <th class="td-right">Conv.</th>
+        <th class="td-right">Valeur (€)</th>
+        <th class="td-right">ROAS</th>
+      </tr>
+      <tr>
+        <td>Cure de 1 mois (`...176395`)</td>
+        <td class="td-right">€2,015.37</td>
+        <td class="td-right">16.57</td>
+        <td class="td-right">€1,208.99</td>
+        <td class="td-right">0.60x</td>
+      </tr>
+      <tr>
+        <td>Cure de 2 mois (`...209163`)</td>
+        <td class="td-right">€1,203.30</td>
+        <td class="td-right">6.07</td>
+        <td class="td-right">€495.96</td>
+        <td class="td-right">0.41x</td>
+      </tr>
+    </table>
+  </div>
+
+  <p><strong>Insight (Femmes):</strong> Campagne en phase de stabilisation après l'ajustement tROAS du 4 septembre. Les données du 4–7 septembre restent préliminaires ; maintenir les paramètres suffisamment longtemps avant d'envisager un nouvel ajustement afin de laisser la stratégie d'enchères accumuler davantage de données.</p>
+
+  <h2>EU - NB - Shopping - Hommes — Budget Misallocation (SKU Analysis)</h2>
+  <p>Algo dépensant budget sur Cure 4-month retournant 0.26x ROAS, mais sous-finançant Cure 1-month (2.03x ROAS).</p>
+  
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>SKU</th>
+        <th class="td-right">Coût (€)</th>
+        <th class="td-right">Conv.</th>
+        <th class="td-right">Valeur (€)</th>
+        <th class="td-right">ROAS</th>
+      </tr>
+      <tr>
+        <td>Cure de 1 mois (`...253963`)</td>
+        <td class="td-right">€349.30</td>
+        <td class="td-right">10.24</td>
+        <td class="td-right">€710.55</td>
+        <td class="td-right">2.03x</td>
+      </tr>
+      <tr>
+        <td>Cure de 2 mois (`...286731`)</td>
+        <td class="td-right">€501.08</td>
+        <td class="td-right">9.67</td>
+        <td class="td-right">€641.44</td>
+        <td class="td-right">1.28x</td>
+      </tr>
+      <tr>
+        <td>Cure de 4 mois (`...319499`)</td>
+        <td class="td-right">€704.41</td>
+        <td class="td-right">2.48</td>
+        <td class="td-right">€185.11</td>
+        <td class="td-right">0.26x</td>
+      </tr>
+    </table>
+  </div>
+
+  <p><strong>Insight (Hommes):</strong> Algorithm severely misallocating. Cure de 4 mois spending €704 mais returning 0.26x (worst). Cure de 1 mois highly profitable 2.03x but budget-starved €349. Action : Slash Max CPC on 4-month cure → force reallocation to 1-month and 2-month.</p>
+
+  <h2>EU - NB - PMax - Homme — Asset Optimization (Aug 7)</h2>
+  <p>Aug 7 planned asset swap : Paused images + added new square images et YouTube videos. Short-term CPC increase (€0.23 → €0.66) drove higher-quality traffic : conversions jumped 4.08x (12 → 49) despite 245% CPC rise. ROAS improved 1.58x → 1.63x, confirmant asset swap successful. Channel breakdown stable : Search 1.92x, YouTube 1.54x, Display 1.70x, Discover 0.81x.</p>
+
+  <h2>EU - NB - PMax - Femme — Negative Keyword Precision Tuning</h2>
+  <p>Negative keyword strategy refined on Sept 7 around the term `homme` to better filter clearly irrelevant male-intent queries while preserving relevant reach. Search currently reports 1.22x ROAS and Discover 1.59x at 48% of spend. Continue monitoring search-term quality and campaign performance before drawing conclusions on the impact of this change.</p>
+
+  <h2>EU - DGen - TOF - Homme — Successful Scaling Story</h2>
+  <p>Spend tripled (€1,101 → €3,043), ROAS stable 1.39x, CPA improved. Channel breakdown : Discover 1.31x concentre 95% de la dépense, tandis que YouTube 3.00x (€117) et Gmail 5.14x (€13.60) affichent des signaux d'efficacité encourageants sur des volumes encore faibles. La campagne TOF a démontré une capacité de scaling stable sur août.</p>
+
+  <h2>EU - DGen - BOF (Homme & Femme) — Paused Pending Retargeting Strategy</h2>
+  <p>Paused August 31 après initial testing phase (launched July 24). Awaiting : (1) GMC product feed integration from Shopify, (2) Dynamic product carousel asset preparation, (3) Cart abandoner pixel implementation. Once retargeting assets and feed sync complete, will relaunch as Dynamic Product Carousel format in October with proper Shopify data layer.</p>
+
+  <h2>Market Expansion — Canada & Switzerland Early Winners</h2>
+  <p>Canada : Brand Search breakout 13.45x, compensant PMax learning curve (0.93x-0.95x non-brand). Switzerland : Pure profit 10.75x ROAS, tous SKUs rentables (5x-28x).</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>SKU (CH)</th>
+        <th class="td-right">Coût (€)</th>
+        <th class="td-right">Conv.</th>
+        <th class="td-right">Valeur (€)</th>
+        <th class="td-right">ROAS</th>
+      </tr>
+      <tr>
+        <td>Homme - Cure de 2 mois</td>
+        <td class="td-right">€8.29</td>
+        <td class="td-right">2.80</td>
+        <td class="td-right">€194.30</td>
+        <td class="td-right">23.44x</td>
+      </tr>
+      <tr>
+        <td>Homme - Cure de 1 mois</td>
+        <td class="td-right">€23.46</td>
+        <td class="td-right">4.23</td>
+        <td class="td-right">€487.78</td>
+        <td class="td-right">20.79x</td>
+      </tr>
+      <tr>
+        <td>Homme - Cure de 4 mois</td>
+        <td class="td-right">€7.40</td>
+        <td class="td-right">1.00</td>
+        <td class="td-right">€101.84</td>
+        <td class="td-right">13.76x</td>
+      </tr>
+      <tr>
+        <td>Femme - Cure de 4 mois</td>
+        <td class="td-right">€15.80</td>
+        <td class="td-right">2.00</td>
+        <td class="td-right">€173.16</td>
+        <td class="td-right">10.96x</td>
+      </tr>
+    </table>
+  </div>
+
+  <p><strong>Insight (Switzerland):</strong> Unlike EU market où 4-month was trap, Swiss market highly profitable across ALL SKUs (10x-23x). High purchasing power means users convert on high-ticket items immediately via Brand search. Sept 4 budget increase €10 → €20/day justified.</p>
+</div>
+
+<!-- SECTION 5: EARLY SEPTEMBER PREVIEW -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">5</div>
+    <div class="section-title">Premier bilan septembre — 1–7 septembre 2026</div>
+  </div>
+
+  <p><strong>Sept 1-7 data (click-time attribution, window not yet closed)</strong> shows account consolidation post-22 août. Dès Sept 4-5, les corrections appliquées (80% tROAS Femmes, negative keyword Canada, asset swaps DGen) commencent convertir. Full ROAS maturation attendre Sept 12-14 (conversion window closes). Early signals confirment trajectory :</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Campagne</th>
+        <th class="td-right">Dépense</th>
+        <th class="td-right">Conv.</th>
+        <th class="td-right">Valeur</th>
+        <th class="td-right">ROAS</th>
+        <th>Signal</th>
+      </tr>
+      <tr>
+        <td><strong>EU - Brand - Search</strong></td>
+        <td class="td-right">€727.85</td>
+        <td class="td-right">93.73</td>
+        <td class="td-right">€7,341.25</td>
+        <td class="td-right"><strong>10.09x</strong></td>
+        <td><span class="badge badge-green">Stable ✅</span></td>
+      </tr>
+      <tr>
+        <td><strong>FR/BE - Brand - Shopping</strong></td>
+        <td class="td-right">€323.92</td>
+        <td class="td-right">19.88</td>
+        <td class="td-right">€1,388.33</td>
+        <td class="td-right"><strong>4.29x</strong></td>
+        <td><span class="badge badge-green">Solid</span></td>
+      </tr>
+      <tr>
+        <td><strong>CA - Brand - Search</strong></td>
+        <td class="td-right">€69.48</td>
+        <td class="td-right">10.00</td>
+        <td class="td-right">€977.96</td>
+        <td class="td-right"><strong>14.08x</strong></td>
+        <td><span class="badge badge-green">Breakout 🍁</span></td>
+      </tr>
+      <tr>
+        <td><strong>CH - Brand - Shopping</strong></td>
+        <td class="td-right">€24.35</td>
+        <td class="td-right">1.24</td>
+        <td class="td-right">€71.39</td>
+        <td class="td-right"><strong>2.93x</strong></td>
+        <td><span class="badge badge-green">Stable 🇨🇭</span></td>
+      </tr>
+      <tr>
+        <td>EU - NB - Shopping - Femmes</td>
+        <td class="td-right">€1,497.22</td>
+        <td class="td-right">16.19</td>
+        <td class="td-right">€1,203.52</td>
+        <td class="td-right"><strong>0.80x</strong></td>
+        <td><span class="badge badge-amber">Recovering ⏳</span></td>
+      </tr>
+      <tr>
+        <td>EU - NB - Shopping - Hommes</td>
+        <td class="td-right">€439.26</td>
+        <td class="td-right">4.00</td>
+        <td class="td-right">€282.12</td>
+        <td class="td-right"><strong>0.64x</strong></td>
+        <td><span class="badge badge-amber">Improving ⏳</span></td>
+      </tr>
+      <tr>
+        <td>EU - NB - PMax - Homme</td>
+        <td class="td-right">€796.50</td>
+        <td class="td-right">13.66</td>
+        <td class="td-right">€926.41</td>
+        <td class="td-right"><strong>1.16x</strong></td>
+        <td><span class="badge badge-amber">Recovery ⏳</span></td>
+      </tr>
+      <tr>
+        <td>EU - NB - PMax - Femme</td>
+        <td class="td-right">€551.23</td>
+        <td class="td-right">7.63</td>
+        <td class="td-right">€525.64</td>
+        <td class="td-right"><strong>0.95x</strong></td>
+        <td><span class="badge badge-amber">Below target ⚠️</span></td>
+      </tr>
+      <tr>
+        <td>CA - NB - PMax - Homme</td>
+        <td class="td-right">€260.19</td>
+        <td class="td-right">5.27</td>
+        <td class="td-right">€416.77</td>
+        <td class="td-right"><strong>1.60x</strong></td>
+        <td><span class="badge badge-green">Solid</span></td>
+      </tr>
+      <tr>
+        <td>CA - NB - PMax - Femme</td>
+        <td class="td-right">€230.32</td>
+        <td class="td-right">4.73</td>
+        <td class="td-right">€316.09</td>
+        <td class="td-right"><strong>1.37x</strong></td>
+        <td><span class="badge badge-amber">Building ⏳</span></td>
+      </tr>
+      <tr>
+        <td>EU - DGen - TOF - Homme</td>
+        <td class="td-right">€842.21</td>
+        <td class="td-right">7.82</td>
+        <td class="td-right">€488.10</td>
+        <td class="td-right"><strong>0.58x</strong></td>
+        <td><span class="badge badge-amber">Volatile ⚠️</span></td>
+      </tr>
+      <tr>
+        <td><strong>Total Compte</strong></td>
+        <td class="td-right"><strong>€5,762.53</strong></td>
+        <td class="td-right"><strong>184.15</strong></td>
+        <td class="td-right"><strong>€13,937.59</strong></td>
+        <td class="td-right"><strong>2.42x</strong></td>
+        <td><span class="badge badge-amber">À maturer ⏳</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <p><strong>Signal clé :</strong> La fenêtre d'attribution étant encore en cours, les résultats du 1–7 septembre doivent être considérés comme préliminaires. Les données après le 22 août montrent une amélioration par rapport au creux de mi-août ; une lecture plus fiable du ROAS sera possible une fois davantage de conversions attribuées.</p>
+</div>
+
+<!-- SECTION 6: ACTION PLAN & OPTIMIZATIONS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">6</div>
+    <div class="section-title">Optimisations & Plan d'action — Septembre 2026</div>
+  </div>
+
+  <h2>Comprendre les Tests Stratégiques d'Août</h2>
+
+  <p>Août a inclus trois tests stratégiques intentionnels qui ont consommé du budget avec des résultats pédagogiques précieux : (1) Test d'expérience tROAS EU Shopping Femmes (cible 80% appliquée Sept 4 — maintenant en stabilisation avec amélioration ROAS +72% post-ajustement), (2) Expansion marché Canada (lancement Brand + PMax — validant forte performance précoce avec breakout Brand Search 13.45x), (3) Phase de test initial DGen BOF (affinement format en cours, relance octobre prévue avec assets retargeting appropriés). Ces tests nous ont positionnés pour scaling Q4 même si le compte a absorbé pression ROAS à court terme.</p>
+
+  <h2>Priorités Septembre — Stabilisation & Validation</h2>
+
+  <p>Nous recommandons de concentrer septembre sur la validation de nos corrections août et la préparation des lancements octobre. Voici ce que nous suggérons :</p>
+
+  <h2>Optimisations Immédiates (Cette Semaine)</h2>
+
+  <p><strong>1. Affinement Assets PMax (Femmes)</strong> — Nous recommandons d'identifier les assets durablement faibles à partir des données disponibles et de tester de nouvelles variantes créatives (Sitelinks, Logos, Callouts), sans attribuer la performance globale de la campagne à un seul asset.</p>
+
+  <p><strong>2. Optimization Asset DGen</strong> — Nous recommandons de revoir en priorité les assets sans conversion ou à faible efficacité lorsqu'ils disposent d'un volume suffisant, puis de tester de nouvelles variantes créatives et landing pages (page produit, case studies, testimonials) afin d'identifier des combinaisons plus performantes.</p>
+
+  <p><strong>3. Période Stabilisation Shopping Femmes</strong> — Nous recommandons de maintenir le paramètre 80% tROAS jusqu'au 10 septembre sans ajustements SKU additionnels, permettant à l'algorithme de converger vers performance stable.</p>
+
+  <h2>Priorité Haute (Cette Semaine)</h2>
+
+  <p><strong>1. EU Shopping Hommes — Réallocation Budget via Bid Adjustments</strong> — Cure 4-month dépense €704 à 0.26x ROAS tandis que Cure 1-month retourne 2.03x ROAS mais est budget-starved. Nous suggérons appliquer réductions Max CPC bid sur le SKU 4-month pour réallouer budget vers variantes 1-month et 2-month haute-performance.</p>
+
+  <p><strong>2. FR/BE Brand Shopping — Device Bid Adjustments</strong> — Desktop retourne 13.38x ROAS sur seulement 4.53% du budget (opportunité uplift significative). Nous recommandons appliquer -30% à -50% bid adjustment sur underperformers Tablet et +20% à +40% adjustment sur Desktop pour déplacer budget vers device ROI-highest.</p>
+
+  <p><strong>3. Monitoring Canada PMax</strong> — Continuer à suivre les effets des ajustements de septembre. Si la performance reste durablement sous l'objectif après une période de données suffisante, réévaluer la stratégie d'enchères et le niveau de tROAS en fonction des objectifs business et du volume de conversions, plutôt que d'appliquer automatiquement le même niveau que sur Women's Shopping.</p>
+
+  <h2>DGen TOF Homme — Analyse de la performance par canal</h2>
+
+  <p>La répartition par canal met en évidence des écarts de performance : <strong>Discover 1.31x ROAS</strong> concentre actuellement l'essentiel de l'investissement (95% du budget), tandis que <strong>YouTube 3.00x ROAS</strong> et <strong>Gmail 5.14x ROAS</strong> affichent une efficacité supérieure sur des volumes de dépense nettement plus faibles.</p>
+
+  <p>Les ajustements d'enchères en pourcentage ne sont pas disponibles individuellement par canal dans Demand Gen. Nous recommandons donc de <strong>surveiller l'évolution de ces performances avant toute restructuration</strong>. Si les écarts se confirment avec davantage de volume, les contrôles de canaux Demand Gen pourront être testés au niveau des groupes d'annonces afin d'isoler certains canaux et d'évaluer leur potentiel avec davantage de contrôle.</p>
+
+  <h2>Benchmarks Validation Septembre</h2>
+
+  <p>Nous recommandons d'utiliser ces métriques pour évaluer progrès septembre :</p>
+
+  <p>• <strong>Women Shopping</strong>: Stabiliser à ≥1.0x ROAS par September 15 (période post-80% tROAS stabilization)<br>
+  • <strong>Canada PMax</strong>: Early improvements visible par September 10-12<br>
+  • <strong>Attribution Window Closure</strong> (September 12-14): Clarté ROAS compte complet, ciblant ≥2.50x ROAS blended comme baseline Q4</p>
+
+  <p>Si ces benchmarks sont atteints, nous aurons la fondation pour optimisation octobre-novembre et stratégie scaling Q4.</p>
+
+  <h2>Lancements Septembre & Travail Préparatoire</h2>
+
+  <p>Nous recommandons de lancer les initiatives suivantes en septembre :</p>
+
+  <p><strong>1. DGen Video Testing Phase</strong> — Créer et tester 3-5 angles créatives vidéo nouveaux (testimonial, problem-solve, before-after, educational, lifestyle) pour améliorer diversité performance TOF/BOF.</p>
+
+  <p><strong>2. CA Brand Shopping Launch</strong> — Expansion vers Canadian Brand Shopping si setup septembre est complet, leverageant le pattern succès 13.45x Brand Search.</p>
+
+  <p><strong>3. Canada PMax Scaling</strong> — Monitoring performance septembre précoce ; si improvements confirment, considérer augmentations budget pour campagnes Canada PMax mid-mois.</p>
+
+  <p><strong>4. CH Brand Shopping Budget Expansion</strong> — Si daily ROAS hold ≥8x through mid-septembre, nous recommandons augmenter allocation budget journalier pour capturer market share additionnel dans ce marché high-efficiency.</p>
+
+  <h2>Octobre & Au-delà</h2>
+
+  <p>Nous recommandons de réserver octobre pour :</p>
+
+  <p>• <strong>BOF Retargeting Campaign Launch</strong> — Avec Dynamic Product Carousel format, audience cart abandoner, et GMC feed integration complète<br>
+  • <strong>CA NB Shopping Launch</strong> — Pending product feed readiness<br>
+  • <strong>CH NB Shopping Expansion</strong> — Lancement variantes Men et Women basé sur données performance septembre</p>
+
+  <h2>📊 Demand Gen Asset Audit & Optimization Plan</h2>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Ad Group</th>
+        <th>Asset/URL</th>
+        <th class="td-right">ROAS</th>
+        <th>Action</th>
+        <th>Reason</th>
+      </tr>
+      <tr>
+        <td><strong>Video (Concept 189.3)</strong></td>
+        <td>Listicle-h</td>
+        <td class="td-right">3.00x</td>
+        <td>✅ KEEP</td>
+        <td>Strong performer</td>
+      </tr>
+      <tr>
+        <td><strong>Video (Concept 189.3)</strong></td>
+        <td>Product page</td>
+        <td class="td-right">3.14x</td>
+        <td>✅ KEEP</td>
+        <td>Strong performer</td>
+      </tr>
+      <tr>
+        <td><strong>Image (3 Men Pack)</strong></td>
+        <td>Listicle-h</td>
+        <td class="td-right">5.13x</td>
+        <td>✅ RE-ENABLED</td>
+        <td>Elite performer (previously paused)</td>
+      </tr>
+      <tr>
+        <td><strong>Image (3 Men Pack)</strong></td>
+        <td>Product page</td>
+        <td class="td-right">1.30x</td>
+        <td>✅ KEEP</td>
+        <td>Solid volume</td>
+      </tr>
+      <tr>
+        <td><strong>Image (Chute de cheveux)</strong></td>
+        <td>Listicle-h</td>
+        <td class="td-right">3.13x</td>
+        <td>✅ KEEP</td>
+        <td>High efficiency</td>
+      </tr>
+      <tr>
+        <td><strong>Image (Chute de cheveux)</strong></td>
+        <td>Product page</td>
+        <td class="td-right">1.55x</td>
+        <td>✅ KEEP</td>
+        <td>Volume performer</td>
+      </tr>
+      <tr>
+        <td><strong>Image (Colagea + Tag)</strong></td>
+        <td>All URLs</td>
+        <td class="td-right">0.00x</td>
+        <td>❌ PAUSE</td>
+        <td>Zero conversions across all URLs</td>
+      </tr>
+      <tr>
+        <td><strong>Image (Men + Text)</strong></td>
+        <td>Product page</td>
+        <td class="td-right">1.55x</td>
+        <td>✅ RE-ENABLE</td>
+        <td>Aug 1-10 data : 1.55x ROAS, 14 conversions</td>
+      </tr>
+      <tr>
+        <td><strong>Image (Men + Text)</strong></td>
+        <td>Listicle-h</td>
+        <td class="td-right">0.60x</td>
+        <td>❌ PAUSE</td>
+        <td>Low ROAS</td>
+      </tr>
+      <tr>
+        <td><strong>Image (Men + Text)</strong></td>
+        <td>advt-1</td>
+        <td class="td-right">0.83x</td>
+        <td>❌ PAUSE</td>
+        <td>Low ROAS</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>🎬 Video Testing & Creative Assets Request</h2>
+
+  <p><strong>Current State:</strong> Only 1 video performing well (Concept 189.3 @ 3.00-3.14x ROAS). Demand Gen thrives on video diversity. Test 3-5 new videos with different angles to improve performance stability.</p>
+
+  <p><strong>Requested Video Angles (Create 3-5 variants):</strong></p>
+  <p>1. <strong>Testimonial/Social Proof</strong> — Customer before-after result, real voice, emotional connection (15-30s)<br>
+  2. <strong>Problem-Agitate-Solve</strong> — "Hair loss problem → solution → visible results" narrative (20-30s)<br>
+  3. <strong>Educational/How-It-Works</strong> — Micro-Infuse® technology explainer, mechanism of action (20-30s)<br>
+  4. <strong>Lifestyle/Confidence Journey</strong> — User with full hair, active lifestyle, confidence (15-30s)<br>
+  5. <strong>Urgency/Limited Offer</strong> — Scarcity messaging, limited stock, testimonial (15-20s)</p>
+
+  <p><strong>Specs :</strong> Préparer les vidéos dans plusieurs formats adaptés à Demand Gen afin de maximiser la couverture sur les différents inventaires Google, notamment YouTube :<br>• <strong>Horizontal (16:9)</strong> — 1920 × 1080 px<br>• <strong>Carré (1:1)</strong> — 1080 × 1080 px<br>• <strong>Vertical (9:16)</strong> — 1080 × 1920 px<br>• <strong>Vertical (4:5)</strong> — 1080 × 1350 px<br>Privilégier des vidéos courtes (15–30 sec) avec sous-titres et éléments clés visibles même sans le son.</p>
+
+  <h2>Retargeting avec Images Produits — Spécifications GMC</h2>
+
+  <p><strong>Vue d'ensemble:</strong> Créer un flux GMC supplémentaire avec images produits optimisées. Google affichera automatiquement ces produits sous forme de carousel sur les emplacements compatibles au sein de la campagne DGen BOF.</p>
+
+  <p><strong>Structure des produits à inclure:</strong></p>
+  <p>• Cure 1-mois<br>
+  • Cure 2-mois<br>
+  • Cure 4-mois<br>
+  • Visuel avant/après (lifestyle)<br>
+  • Testimonial ou urgence</p>
+
+  <p><strong>Spécifications d'images optimales:</strong></p>
+  <p>• Carré (mobile prioritaire): 1080x1080px | ratio 1:1<br>
+  • Paysage (desktop): 1200x628px | ratio 1.9:1<br>
+  • Portrait (mobile vertical): 1080x1350px | ratio 4:5<br>
+  • Format: JPG ou PNG<br>
+  • Taille: &lt;5 MB par image<br>
+  • Résolution: 72 DPI minimum (96 DPI idéal)</p>
+
+  <p><strong>Exigences de conception:</strong></p>
+  <p>• Fond clair et cohérent entre tous les produits<br>
+  • Produit bien centré et éclairé<br>
+  • Packaging visible<br>
+  • Logo marque en bas à droite (minimum 80x80px)<br>
+  • Palette couleur uniforme</p>
+
+  <p><strong>Livraison technique:</strong> Upload flux supplémentaire dans GMC avec étiquettes personnalisées pour identifier les produits BOF → Google génère automatiquement le carousel sur les placements compatibles → Lancement octobre avec reconstruction campagne BOF.</p>
+</div>
+
+<!-- CLOSING -->
+<div class="section">
+  <div class="section-title" style="font-size: 16px; margin-bottom: 20px;">Conclusion — Août structure l'expansion, septembre consolide</div>
+
+  <p><strong>Août = Mois de stabilisation sous pression saisonnière.</strong> Trois initiatives tests mangé budget en août : (1) Test expérience tROAS EU Shopping Femmes, (2) Expansion Canada, (3) Tests DGen BOF initiaux. ROAS chuté 3.26x → 2.47x (-24%). Mais contexte critique : semaine 4 stabilisation 2.55x ROAS = données correctrices travaillant. Volume +61% dépense, +19.5% conversions, +22% revenu valeur = account scaling intentionnel pour building foundation Q4.</p>
+
+  <p><strong>Septembre = Validation phase.</strong> Actions stabilisation appliquées (80% tROAS Femmes, negative keywords Canada, DGen TOF scaling, asset optimizations, DGen audit, video testing launch, carousel asset prep). Correctives doivent converger sept 6-15 en gains mesurables. Benchmarks septembre : (1) Femmes Shopping ≥1.0x ROAS by sept 15 (post 80% tROAS hold), (2) Canada PMax early improvements visible sept 10-12, (3) Sept 12-14 attribution window mature → true account ROAS ≥2.50x. Si atteints, octobre-novembre optimisation complète et Q4 scaling baseline set.</p>
+
+  <p><strong>Dynamique Q3 → Q4 confirmée.</strong> Malgré volatile août, Brand campaigns ont préservé efficacité et porté account (10.59x EU Search, 5.34x FR/BE Shopping). Demand Gen TOF 1.39x stable scaling signal. Switzerland 10.75x ROAS = geo expansion validée. Canada breakout 13.45x Brand Search.</p>
+</div>
+
+<!-- THANK YOU PAGE -->
+<div class="thank-you-page">
+  <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 32px;">
+    <div style="width: 36px; height: 36px; position: relative; flex-shrink: 0;">
+      <div style="position: absolute; width: 36px; height: 36px; border-radius: 50%; border: 5px solid var(--blue); border-bottom-color: transparent; transform: rotate(-30deg);"></div>
+      <div style="position: absolute; width: 24px; height: 24px; top: 6px; left: 6px; border-radius: 50%; border: 4px solid var(--green); border-top-color: transparent; transform: rotate(30deg);"></div>
+      <div style="position: absolute; width: 12px; height: 12px; top: 12px; left: 12px; border-radius: 50%; background: var(--amber);"></div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-bottom: 28px;">
+    <div style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.5); margin-bottom: 6px; font-weight: 600;">Katchingg Media</div>
+    <div style="font-size: 16px; color: rgba(255,255,255,0.7);">Google Ads pour l'eCommerce</div>
+  </div>
+
+  <h1 style="font-size: 48px; font-weight: 700; margin-bottom: 28px; letter-spacing: -0.5px; text-align: center;">Merci de votre confiance.</h1>
+
+  <p style="font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.8); max-width: 650px; margin: 0 auto 40px; text-align: center;">Ce rapport a été préparé avec soin et attention à chaque point de données. Nous nous engageons pleinement dans la croissance du compte Colagea et attendons avec impatience de partager les résultats de septembre.</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden; max-width: 550px; margin: 0 auto 40px;">
+    <div style="padding: 32px 28px; background: rgba(255,255,255,0.03); text-align: center;">
+      <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: rgba(255,255,255,0.4); margin-bottom: 14px; font-weight: 600;">Préparé par</div>
+      <div style="font-size: 20px; font-weight: 700; color: white; margin-bottom: 4px;">Diana</div>
+      <div style="font-size: 12px; color: rgba(255,255,255,0.6);">Media Buyer</div>
+    </div>
+    <div style="padding: 32px 28px; background: rgba(255,255,255,0.03); text-align: center;">
+      <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: rgba(255,255,255,0.4); margin-bottom: 14px; font-weight: 600;">Vérifié par</div>
+      <div style="font-size: 20px; font-weight: 700; color: white; margin-bottom: 4px;">Charles Perot</div>
+      <div style="font-size: 12px; color: rgba(255,255,255,0.6);">Manager, Katchingg Media</div>
+    </div>
+  </div>
+
+  <div style="width: 120px; height: 4px; background: linear-gradient(90deg, var(--blue) 0%, var(--green) 50%, var(--amber) 100%); border-radius: 2px; margin: 0 auto 0;"></div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align: center; padding: 32px 0; font-size: 12px; color: #999; line-height: 1.8;">
+  <div>Katchingg Media — Google Ads pour l'eCom | Préparé par <strong>Diana</strong> — Media Buyer | Vérifié par <strong>Charles Perot</strong> — Manager, Katchingg Media | Colagea — Résumé de Performance Août 2026</div>
+</div>
+
+</div>
+</body>
+</html>
